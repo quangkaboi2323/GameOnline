@@ -1,0 +1,28 @@
+﻿@model WebProject.Models.Game
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="margin-top: 20px;"><b><i>Xóa</i></b></h2>
+
+<h3>Bạn có chắc chắn muốn xóa trò chơi?</h3>
+<div class="col-sm-12">    
+    <hr />
+    <div class="col-md-6 col-sm-12">
+        <img src="~/Assets/img/@Model.AnhMinhHoa" style="display: block; margin-left: auto; margin-right: auto; width:40%;" />
+    </div>
+    <div class="col-12">
+        <h1><i style="color: red;">@Html.DisplayFor(model => model.TenGame) - @Html.DisplayFor(model => model.NhaPhatTrien.TenNPT)</i></h1>
+    </div>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="margin-bottom:50px;">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("trở về danh sách", "Index")            
+        </div>
+    }
+</div>

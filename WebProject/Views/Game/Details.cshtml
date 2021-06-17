@@ -1,0 +1,185 @@
+﻿@model WebProject.Models.Game
+
+@{
+    ViewBag.Title = "Details";
+    string btnPlay = "";
+    string gia = "";
+    int danhGia = 0;    
+}
+<style>
+    th, td {
+        padding: 15px;
+        text-align: left;
+    }
+
+    #Name {
+        background-color: #5a88ca;
+        color: white;
+    }
+</style>
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Chi tiết</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="col-md-12">
+        <div class="product-content-right">
+            <div class="product-breadcroumb">
+                <a href="@Url.Action("Home","Game")">Trang chủ</a>
+                <a href="@Url.Action("Index","Game")">Trò chơi</a>
+                <a href="">@Model.TenGame</a>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="product-images">
+                        <div class="product-main-img">
+                            <img src="~/Assets/img/@Model.AnhMinhHoa" alt="" style="width: 100%;">
+                        </div>
+
+                        <div class="product-gallery">
+                            <img src="~/Assets/img/@Model.Hinh1" alt="">
+                            <img src="~/Assets/img/@Model.Hinh2" alt="">
+                            <img src="~/Assets/img/@Model.Hinh3" alt="">
+                            <img src="~/Assets/img/@Model.Hinh4" alt="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="product-inner">
+                        <h2 class="product-name">@Model.TenGame</h2>
+                        @{ if (Model.Gia == 0)
+                            {
+                                btnPlay = "Chơi ngay";
+                                gia = "Miễn phí";                                
+                            }
+                            else
+                            {
+                                btnPlay = "Mua ngay";
+                                gia = Model.Gia.ToString() + " VND";                                
+                            }
+                        }
+                        <div class="product-inner-price">
+                            <ins>@gia</ins>
+                        </div>
+                        <div class="product-wid-price">
+                            <ins>Đánh giá</ins>
+                        </div>
+                        <div class="product-wid-rating">
+                            @{ 
+                                if(Model.DanhGia != null && Model.SoLuong_DG != null)
+                                { danhGia = (int)Model.DanhGia / (int)Model.SoLuong_DG; }                                
+                            }
+                            @for (int i = 0; i < danhGia; i++)
+                            {
+                                <i class="glyphicon glyphicon-star"></i>
+                            }
+                            @for (int i = danhGia; i < 5; i++)
+                            {
+                                <i class="glyphicon glyphicon-star-empty"></i>
+                            }
+                        </div>
+                        <div>
+                            <p>Lượt tải: @Model.LuotTai</p>
+                        </div>
+                        <form action="" class="cart">
+                            <a href="@Url.Action("Create", new { id = Model.MaGame })" style="font-size: 40px; color: white; padding: 5px 16px; border-radius: 10px; background-color: royalblue;">@btnPlay</a>
+                            @*<button class="add_to_cart_button" type="submit" >@btnPlay</button>*@
+                        </form>
+                        <div role="tabpanel">
+
+                        </div>
+                        <div role="tabpanel">
+                            <ul class="product-tab" role="tablist">
+                                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Cấu hình</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade in active" id="home">
+                                    <h2><b style="color: #5a88ca;">CẤU HÌNH TỐI THIỂU</b></h2>
+                                    <table width="100%" border="1">
+                                        <tr>
+                                            <th id="Name">OS</th>
+                                            <th>@Html.DisplayFor(model => model.OSName)</th>
+                                        </tr>
+                                        <tr>
+                                            <th id="Name">Processor</th>
+                                            <th>@Html.DisplayFor(model => model.ProcessName)</th>
+                                        </tr>
+                                        <tr>
+                                            <th id="Name">Memory</th>
+                                            <th>@Html.DisplayFor(model => model.MemoryName)</th>
+                                        </tr>
+                                        <tr>
+                                            <th id="Name">Graphic</th>
+                                            <th>@Html.DisplayFor(model => model.GraphicsName)</th>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="col-md-12">
+                <h2 style="color: #5a88ca;">Giới thiệu</h2>
+                <p style="font-size:17px;">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tristique, diam in consequat iaculis,
+                    est purus iaculis mauris, imperdiet facilisis ante ligula at nulla. Quisque volutpat nulla risus,
+                    id maximus ex aliquet ut. Suspendisse potenti. Nulla varius lectus id turpis dignissim porta. Quisque
+                    magna arcu, blandit quis felis vehicula, feugiat gravida diam. Nullam nec turpis ligula. Aliquam quis
+                    blandit elit, ac sodales nisl. Aliquam eget dolor eget elit malesuada aliquet. In varius lorem lorem,
+                    semper bibendum lectus lobortis ac.
+
+                    Mauris placerat vitae lorem gravida viverra. Mauris in fringilla ex. Nulla facilisi. Etiam scelerisque
+                    tincidunt quam facilisis lobortis. In malesuada pulvinar neque a consectetur. Nunc aliquam gravida purus,
+                    non malesuada sem accumsan in. Morbi vel sodales libero.
+                </p>
+                <hr />
+            </div>
+            <div class="related-products-wrapper">
+                <h2 class="related-products-title">Trò chơi tương tự</h2>
+                <div class="related-products-carousel">
+                    @foreach (var item in ViewBag.gameSame)
+                    {
+                        if (item.MaGame != Model.MaGame)
+                        {
+                            <div class="single-product">
+                                <div class="product-f-image">
+                                    <img src="~/Assets/img/@item.AnhMinhHoa" alt="">
+                                    <div class="product-hover">
+                                        <a href="@Url.Action("Details", new { id = item.MaGame})" class="view-details-link"><i class="fa fa-link"></i> Xem chi tiết</a>
+                                    </div>
+                                </div>
+
+                                <h2><a href="">@item.TenGame</a></h2>
+                                <div class="product-carousel-price">
+                                    @{
+                                        if (item.Gia == 0)
+                                        { gia = "Miễn Phí"; }
+                                        else
+                                        { gia = item.Gia.ToString() + " VND"; }
+                                    }
+                                    <ins>@gia</ins>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+            <br />
+        </div>
+    </div>
+
+</div>
+

@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GameModelStoreContainer" CdmEntityContainer="GameEntities1">
+    <EntitySetMapping Name="DoTuois">
+      <EntityTypeMapping TypeName="GameModel.DoTuoi">
+        <MappingFragment StoreEntitySet="DoTuoi">
+          <ScalarProperty Name="MaDoTuoi" ColumnName="MaDoTuoi" />
+          <ScalarProperty Name="Tuoi" ColumnName="Tuoi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Games">
+      <EntityTypeMapping TypeName="GameModel.Game">
+        <MappingFragment StoreEntitySet="Game">
+          <ScalarProperty Name="MaGame" ColumnName="MaGame" />
+          <ScalarProperty Name="TenGame" ColumnName="TenGame" />
+          <ScalarProperty Name="NgayRaMat" ColumnName="NgayRaMat" />
+          <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+          <ScalarProperty Name="DanhGia" ColumnName="DanhGia" />
+          <ScalarProperty Name="SoLuong_DG" ColumnName="SoLuong_DG" />
+          <ScalarProperty Name="Gia" ColumnName="Gia" />
+          <ScalarProperty Name="AnhMinhHoa" ColumnName="AnhMinhHoa" />
+          <ScalarProperty Name="LuotTai" ColumnName="LuotTai" />
+          <ScalarProperty Name="Hinh1" ColumnName="Hinh1" />
+          <ScalarProperty Name="Hinh2" ColumnName="Hinh2" />
+          <ScalarProperty Name="Hinh3" ColumnName="Hinh3" />
+          <ScalarProperty Name="Hinh4" ColumnName="Hinh4" />
+          <ScalarProperty Name="Dungluong" ColumnName="Dungluong" />
+          <ScalarProperty Name="TenFile" ColumnName="TenFile" />
+          <ScalarProperty Name="OSName" ColumnName="OSName" />
+          <ScalarProperty Name="MemoryName" ColumnName="MemoryName" />
+          <ScalarProperty Name="ProcessName" ColumnName="ProcessName" />
+          <ScalarProperty Name="GraphicsName" ColumnName="GraphicsName" />
+          <ScalarProperty Name="MaTheLoai" ColumnName="MaTheLoai" />
+          <ScalarProperty Name="MaNPT" ColumnName="MaNPT" />
+          <ScalarProperty Name="MaDoTuoi" ColumnName="MaDoTuoi" />
+          <ScalarProperty Name="MaNN" ColumnName="MaNN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HoaDons">
+      <EntityTypeMapping TypeName="GameModel.HoaDon">
+        <MappingFragment StoreEntitySet="HoaDon">
+          <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+          <ScalarProperty Name="MaGame" ColumnName="MaGame" />
+          <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+          <ScalarProperty Name="NgayThanhToan" ColumnName="NgayThanhToan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KhachHangs">
+      <EntityTypeMapping TypeName="GameModel.KhachHang">
+        <MappingFragment StoreEntitySet="KhachHang">
+          <ScalarProperty Name="QuyenHan" ColumnName="QuyenHan" />
+          <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+          <ScalarProperty Name="TenKH" ColumnName="TenKH" />
+          <ScalarProperty Name="NamSinh" ColumnName="NamSinh" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ViKhachHang" ColumnName="ViKhachHang" />
+          <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+          <ScalarProperty Name="DS_GameMua" ColumnName="DS_GameMua" />
+          <ScalarProperty Name="Ds_YeuThich" ColumnName="Ds_YeuThich" />
+          <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NgonNgus">
+      <EntityTypeMapping TypeName="GameModel.NgonNgu">
+        <MappingFragment StoreEntitySet="NgonNgu">
+          <ScalarProperty Name="MaNN" ColumnName="MaNN" />
+          <ScalarProperty Name="TenNN" ColumnName="TenNN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NhaPhatTriens">
+      <EntityTypeMapping TypeName="GameModel.NhaPhatTrien">
+        <MappingFragment StoreEntitySet="NhaPhatTrien">
+          <ScalarProperty Name="MaNPT" ColumnName="MaNPT" />
+          <ScalarProperty Name="TenNPT" ColumnName="TenNPT" />
+          <ScalarProperty Name="LogoNPT" ColumnName="LogoNPT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="GameModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TheLoais">
+      <EntityTypeMapping TypeName="GameModel.TheLoai">
+        <MappingFragment StoreEntitySet="TheLoai">
+          <ScalarProperty Name="MaTheLoai" ColumnName="MaTheLoai" />
+          <ScalarProperty Name="TenTheLoai" ColumnName="TenTheLoai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Game_TimKiem" FunctionName="GameModel.Store.Game_TimKiem" />
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="GameModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="GameModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="GameModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="GameModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GameModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="GameModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GameModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="GameModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="GameModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,4 @@
+﻿@foreach (var item in ViewBag.KH)
+{
+    <li><a href="@Url.Action("Edit","KhachHangs", new { id = item.MaKH})">Xin chào  @item.TenKH </a></li>
+}

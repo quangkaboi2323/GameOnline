@@ -1,0 +1,65 @@
+﻿@model WebProject.Models.KhachHang
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string quyenHan = "";
+}
+@{
+    if (Model.QuyenHan == true) { quyenHan = "người quản trị"; }
+    else { quyenHan = "người dùng"; }
+} 
+<h1><b><i>Thông tin chi tiết @quyenHan</i></b></h1>
+
+<div style="font-size: 20px;">
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Họ và tên:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenKH)
+        </dd>
+
+        <dt>
+            Năm sinh:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NamSinh)
+        </dd>
+
+        <dt>
+            Địa chỉ Email:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        @{
+            if (Model.QuyenHan == false)
+            {
+                <dt>
+                    Ví người dùng:
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ViKhachHang)
+                </dd>
+            }
+        }
+
+        <dt>
+            Số điện thoại:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoDienThoai)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaKH }) |
+    @Html.ActionLink("Trở về danh sách", "Index")
+</p>

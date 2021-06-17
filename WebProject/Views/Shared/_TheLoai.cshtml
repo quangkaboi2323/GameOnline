@@ -1,0 +1,10 @@
+﻿<li class="dropdown">
+    <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#">Thể loại <b class="caret"></b></a>
+    <ul class="dropdown-menu">
+        @foreach (var item in ViewBag.TL)
+        {
+            <li><a href="@Url.Action("Details_TheLoai","Game", new { id = item.MaTheLoai})">@item.TenTheLoai</a></li>
+        }
+    </ul>
+</li>
+

@@ -1,0 +1,222 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+    string gia = "";
+    int danhGia = 0;
+}
+
+<div class="slider-area">
+    <!-- Slider -->
+    <div class="block-slider block-slider4">
+        <ul class="" id="bxslider-home4">
+            <li>
+                <img src="~/Assets/img/banner1.jpg" alt="Slide">
+            </li>
+            <li>
+                <img src="~/Assets/img/banner2.jpg" alt="Slide">
+            </li>
+            <li>
+                <img src="~/Assets/img/banner3.jpg" alt="Slide">
+            </li>
+            <li>
+                <img src="~/Assets/img/banner4.jpg" alt="Slide">
+            </li>
+        </ul>
+    </div>
+    <!-- ./Slider -->
+</div> <!-- End slider area -->
+<!--<div class="promo-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="single-promo promo1">
+                    <i class="fa fa-refresh"></i>
+                    <p>30 Days return</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="single-promo promo2">
+                    <i class="fa fa-truck"></i>
+                    <p>Free shipping</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="single-promo promo3">
+                    <i class="fa fa-lock"></i>
+                    <p>Secure payments</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="single-promo promo4">
+                    <i class="fa fa-gift"></i>
+                    <p>New products</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+ <!-- End promo area -->
+
+<div class="maincontent-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="latest-product">
+                    <h2 class="section-title">Latest Products</h2>
+                    <div class="product-carousel">
+                        @foreach (var item in ViewBag.GameLatest)
+                        {
+                            <div class="single-product">
+                                <div class="product-f-image">
+                                    <img src="~/Assets/img/@item.AnhMinhHoa" alt="" style="max-width: 100%; height: 200px;">
+                                    <div class="product-hover">
+                                        <a href="#" class="add-to-cart-link"><i class="fa fa-heart"></i> Yêu thích</a>
+                                        <a href="@Url.Action("Details", new { id = item.MaGame})" class="view-details-link"><i class="fa fa-link"></i> Xem chi tiết</a>
+                                    </div>
+                                </div>
+
+                                <h2><a href="single-product.html">@item.TenGame</a></h2>
+                                <h2>Ngày ra mắt: @item.NgayRaMat.ToString("dd/MM/yyyy")</h2>
+                                @{ if (@item.Gia == 0)
+                                    { gia = "Miễn phí"; }
+                                    else
+                                    { gia = item.Gia.ToString() + "VND"; }
+                                }
+                                <div class="product-carousel-price">
+                                    <ins>@gia</ins>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- End main content area -->
+
+<div class="brands-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="brand-wrapper">
+                    <div class="brand-list">
+                        @foreach (var item in ViewBag.NPT)
+                        {
+                            <a href="@Url.Action("Details_NhaPhatTrien","Game", new { id = item.MaNPT})"><img src="~/Assets/img/brand1.png" alt=""></a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- End brands area -->
+
+<div class="product-widget-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="single-product-widget">
+                    <h2 class="product-wid-title">Trò chơi miễn phí</h2>
+                    @foreach (var item in ViewBag.GameFree)
+                    {
+
+                        <div class="single-wid-product">
+                            <a href="@Url.Action("Details", new { id = item.MaGame})"><img src="~/Assets/img/@item.AnhMinhHoa" alt="" class="product-thumb"></a>
+                            <h2><a href="@Url.Action("Details", new { id = item.MaGame})">@item.TenGame</a></h2>
+                            <div class="product-wid-price">
+                                <ins>Đánh giá</ins>
+                            </div>
+                            <div class="product-wid-rating">
+                                @{
+                                    if (item.DanhGia != null && item.SoLuong_DG != null)
+                                    { danhGia = (int)item.DanhGia / (int)item.SoLuong_DG; }
+                                }
+                                @for (int i = 0; i < danhGia; i++)
+                                {
+                                    <i class="glyphicon glyphicon-star"></i>
+                                }
+                                @for (int i = danhGia; i < 5; i++)
+                                {
+                                    <i class="glyphicon glyphicon-star-empty"></i>
+                                }
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="single-product-widget">
+                    <h2 class="product-wid-title">Trò chơi tính phí</h2>
+                    @foreach (var item in ViewBag.GameNotFree)
+                    {
+                        if (item.Gia != 0)
+                        {
+                            <div class="single-wid-product">
+                                <a href="@Url.Action("Details", new { id = item.MaGame})"><img src="~/Assets/img/@item.AnhMinhHoa" alt="" class="product-thumb"></a>
+                                <h2><a href="@Url.Action("Details", new { id = item.MaGame})">@item.TenGame</a></h2>
+                                <div class="product-wid-price">
+                                    <ins>Giá: @item.Gia vnd</ins>
+                                </div>
+                                <div class="product-wid-price">
+                                    <ins>Đánh giá</ins>
+                                </div>
+                                <div class="product-wid-rating">
+                                    @{ danhGia = item.DanhGia / item.SoLuong_DG;}
+                                    @for (int i = 0; i < danhGia; i++)
+                                    {
+                                        <i class="glyphicon glyphicon-star"></i>
+                                    }
+                                    @for (int i = danhGia; i < 5; i++)
+                                    {
+                                        <i class="glyphicon glyphicon-star-empty"></i>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="single-product-widget">
+                    <h2 class="product-wid-title">Trò chơi mới nhất</h2>
+                    @foreach (var item in ViewBag.TaiNhieu)
+                    {
+                        <div class="single-wid-product">
+                            <a href="@Url.Action("Details", new { id = item.MaGame})"><img src="~/Assets/img/@item.AnhMinhHoa" alt="" class="product-thumb"></a>
+                            <h2><a href="@Url.Action("Details", new { id = item.MaGame})">@item.TenGame</a></h2>
+                            <div class="product-wid-price">
+                                <ins>Số lượt tải: @item.LuotTai</ins>
+                            </div>
+                            <div class="product-wid-price">
+                                <ins>Đánh giá</ins>
+                            </div>
+                            <div class="product-wid-rating">
+                                @{
+                                    if (item.DanhGia != null && item.SoLuong_DG != null)
+                                    { danhGia = (int)item.DanhGia / (int)item.SoLuong_DG; }
+                                }
+                                @for (int i = 0; i < danhGia; i++)
+                                {
+                                    <i class="glyphicon glyphicon-star"></i>
+                                }
+                                @for (int i = danhGia; i < 5; i++)
+                                {
+                                    <i class="glyphicon glyphicon-star-empty"></i>
+                                }
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div> <!-- End product widget area -->

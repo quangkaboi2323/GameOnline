@@ -1,0 +1,85 @@
+﻿@model PagedList.IPagedList<WebProject.Models.Game>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Home";
+    string gia = "";
+    int danhGia = 0;
+}
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Trò chơi</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <h2>Danh sách trò chơi</h2>
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3  col-sm-6">
+                    <div class="single-shop-product">
+
+                        <div class="product-upper">
+                            <img src="~/Assets/img/@item.AnhMinhHoa" alt="" style="max-width: 100%; height: 200px;">
+                        </div>
+                        <h2><a href="">@item.TenGame</a></h2>
+                        <div>
+                            Thể loại: @item.TheLoai.TenTheLoai
+                        </div>
+                        <div>
+                            <b>Đánh giá: </b>
+                            <span class="product-wid-rating">
+                                @{
+                                    if (item.DanhGia != null && item.SoLuong_DG != null)
+                                    { danhGia = (int)item.DanhGia / (int)item.SoLuong_DG; }
+                                }                                
+                                @for (int i = 0; i < danhGia; i++)
+                                {
+                                    <i class="glyphicon glyphicon-star"></i>
+                                }
+                                @for (int i = danhGia; i < 5; i++)
+                                {
+                                    <i class="glyphicon glyphicon-star-empty"></i>
+                                }
+                            </span>
+                        </div>
+                        <br />
+                        <div style="font-size: 20px; color: white;width:100%; text-align:center;">
+                            @{
+                                if (item.Gia == 0)
+                                { gia = "Miễn phí"; }
+                                else
+                                { gia = item.Gia.ToString() + " vnd"; }
+                            }
+                            <span style=" padding: 5px 16px; border-radius: 10px; background-color:greenyellow;">@gia</span>
+                        </div>
+
+                        <div class="product-option-shop">
+                            <a class="add_to_cart_button" style="width: 100%; text-align:center;" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="@Url.Action("Details", new { id = item.MaGame})">Xem chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="row">
+
+            <div class="product-pagination text-center">
+                <nav>
+                    <ul class="pagination">
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>

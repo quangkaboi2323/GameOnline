@@ -1,0 +1,106 @@
+﻿@model WebProject.Models.KhachHang
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1><b><i>Cấm người dùng (xóa tài khoản)</i></b></h1>
+<div>
+    <hr />
+    <div style="font-size:25px;">
+        <p>
+            <b>Mã tài khoản: @Html.DisplayFor(model => model.MaKH)</b>
+        </p>
+        <p>
+            <b>Tên đăng nhập: @Html.DisplayFor(model => model.Email)</b>
+        </p>
+        <p>
+            <b>Họ và tên: @Html.DisplayFor(model => model.TenKH)</b>
+        </p>
+    </div>
+    @*<dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenKH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenKH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NamSinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NamSinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ViKhachHang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ViKhachHang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoDienThoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoDienThoai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DS_GameMua)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DS_GameMua)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ds_YeuThich)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ds_YeuThich)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MatKhau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MatKhau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuyenHan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuyenHan)
+        </dd>
+
+    </dl>*@
+    <h3><i style="color: red;">Bạn có chắc chắn muốn cấm (xóa) tài khoản này?</i></h3>
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Trở về danh sách", "Index")
+        </div>
+    }
+</div>

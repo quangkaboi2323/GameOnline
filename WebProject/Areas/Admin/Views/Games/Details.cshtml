@@ -1,0 +1,163 @@
+﻿@model WebProject.Models.Game
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<body>
+    <div class="col-md-4 col-sm-12">
+        <h2><b>Thông tin chi tiết</b></h2>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Tên trò chơi
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TenGame)
+            </dd>
+
+            <dt>
+                Ngày ra mắt
+            </dt>
+
+            <dd>
+                @*@Html.DisplayFor(model => model.NgayRaMat)*@
+                @Convert.ToDateTime(Model.NgayRaMat).ToString("dd/MM/yyyy")
+            </dd>
+
+            <dt>
+                Giá
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Gia)
+            </dd>
+
+            <dt>
+                Số lượt tải
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LuotTai)
+            </dd>
+
+            <dt>
+                Dung lượng
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Dungluong)
+            </dd>
+
+            <dt>
+                Tên đường dẫn
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TenFile)
+            </dd>
+
+            <dt>
+                Giao diện
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.OSName)
+            </dd>
+
+            <dt>
+                Dung lượng ram
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MemoryName)
+            </dd>
+
+            <dt>
+                Chip xử lý
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProcessName)
+            </dd>
+
+            <dt>
+                Card đồ họa
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.GraphicsName)
+            </dd>
+
+            <dt>
+                Độ tuổi
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DoTuoi.Tuoi)
+            </dd>
+
+            <dt>
+                Ngôn ngữ
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NgonNgu.TenNN)
+            </dd>
+
+            <dt>
+                Nhà phát triển
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NhaPhatTrien.TenNPT)
+            </dd>
+
+            <dt>
+                Thể loại
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TheLoai.TenTheLoai)
+            </dd>
+
+            <dt>
+                Mô tả
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MoTa)
+            </dd>
+        </dl>
+    </div>
+    <div class="col-md-8 col-sm-12">
+        <div class="col-12">
+            <h2><b>Ảnh minh họa</b></h2>
+            <hr />
+            <img src="~/Assets/img/@Model.AnhMinhHoa" style="display: block; margin-left: auto; margin-right: auto; width:40%;" />
+            <br />
+            <h3><b>Ảnh phụ</b></h3>
+            <hr />
+            <div class="col-md-3 col-sm-6">
+                <img src="~/Assets/img/@Model.Hinh1" style="display: block; margin-left: auto; margin-right: auto; width:90%;" />
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <img src="~/Assets/img/@Model.Hinh2" style="display: block; margin-left: auto; margin-right: auto; width:90%;" />
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <img src="~/Assets/img/@Model.Hinh3" style="display: block; margin-left: auto; margin-right: auto; width:90%;" />
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <img src="~/Assets/img/@Model.Hinh4" style="display: block; margin-left: auto; margin-right: auto; width:90%;" />
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaGame }) |
+    @Html.ActionLink("Trở về danh sách", "Index")
+</p>

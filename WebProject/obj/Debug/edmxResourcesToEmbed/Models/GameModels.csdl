@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GameModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DoTuoi">
+    <Key>
+      <PropertyRef Name="MaDoTuoi" />
+    </Key>
+    <Property Name="MaDoTuoi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Tuoi" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Games" Relationship="Self.FK_MaDT" FromRole="DoTuoi" ToRole="Game" />
+  </EntityType>
+  <EntityType Name="Game">
+    <Key>
+      <PropertyRef Name="MaGame" />
+    </Key>
+    <Property Name="MaGame" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenGame" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NgayRaMat" Type="DateTime" Precision="0" />
+    <Property Name="MoTa" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="DanhGia" Type="Int32" />
+    <Property Name="SoLuong_DG" Type="Int32" />
+    <Property Name="Gia" Type="Decimal" Precision="10" Scale="0" />
+    <Property Name="AnhMinhHoa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LuotTai" Type="Int32" />
+    <Property Name="Hinh1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Hinh2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Hinh3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Hinh4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Dungluong" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TenFile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OSName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MemoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProcessName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GraphicsName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MaTheLoai" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MaNPT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MaDoTuoi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MaNN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DoTuoi" Relationship="Self.FK_MaDT" FromRole="Game" ToRole="DoTuoi" />
+    <NavigationProperty Name="HoaDons" Relationship="Self.FK_MaGame" FromRole="Game" ToRole="HoaDon" />
+    <NavigationProperty Name="NgonNgu" Relationship="Self.FK_MaNN" FromRole="Game" ToRole="NgonNgu" />
+    <NavigationProperty Name="NhaPhatTrien" Relationship="Self.FK_MaNPT" FromRole="Game" ToRole="NhaPhatTrien" />
+    <NavigationProperty Name="TheLoai" Relationship="Self.FK_MaTL" FromRole="Game" ToRole="TheLoai" />
+  </EntityType>
+  <EntityType Name="HoaDon">
+    <Key>
+      <PropertyRef Name="MaHD" />
+    </Key>
+    <Property Name="MaHD" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MaGame" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MaKH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="NgayThanhToan" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Game" Relationship="Self.FK_MaGame" FromRole="HoaDon" ToRole="Game" />
+    <NavigationProperty Name="KhachHang" Relationship="Self.FK_MaKH" FromRole="HoaDon" ToRole="KhachHang" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="MaKH" />
+    </Key>
+    <Property Name="MaKH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenKH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NamSinh" Type="Int32" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ViKhachHang" Type="Decimal" Precision="10" Scale="0" />
+    <Property Name="SoDienThoai" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="DS_GameMua" Type="String" MaxLength="600" FixedLength="false" Unicode="false" />
+    <Property Name="Ds_YeuThich" Type="String" MaxLength="600" FixedLength="false" Unicode="false" />
+    <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="HoaDons" Relationship="Self.FK_MaKH" FromRole="KhachHang" ToRole="HoaDon" />
+    <Property Name="QuyenHan" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NgonNgu">
+    <Key>
+      <PropertyRef Name="MaNN" />
+    </Key>
+    <Property Name="MaNN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenNN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Games" Relationship="Self.FK_MaNN" FromRole="NgonNgu" ToRole="Game" />
+  </EntityType>
+  <EntityType Name="NhaPhatTrien">
+    <Key>
+      <PropertyRef Name="MaNPT" />
+    </Key>
+    <Property Name="MaNPT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenNPT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LogoNPT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Games" Relationship="Self.FK_MaNPT" FromRole="NhaPhatTrien" ToRole="Game" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TheLoai">
+    <Key>
+      <PropertyRef Name="MaTheLoai" />
+    </Key>
+    <Property Name="MaTheLoai" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenTheLoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Games" Relationship="Self.FK_MaTL" FromRole="TheLoai" ToRole="Game" />
+  </EntityType>
+  <Association Name="FK_MaDT">
+    <End Role="DoTuoi" Type="Self.DoTuoi" Multiplicity="0..1" />
+    <End Role="Game" Type="Self.Game" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DoTuoi">
+        <PropertyRef Name="MaDoTuoi" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="MaDoTuoi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MaGame">
+    <End Role="Game" Type="Self.Game" Multiplicity="0..1" />
+    <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Game">
+        <PropertyRef Name="MaGame" />
+      </Principal>
+      <Dependent Role="HoaDon">
+        <PropertyRef Name="MaGame" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MaNN">
+    <End Role="NgonNgu" Type="Self.NgonNgu" Multiplicity="0..1" />
+    <End Role="Game" Type="Self.Game" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NgonNgu">
+        <PropertyRef Name="MaNN" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="MaNN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MaNPT">
+    <End Role="NhaPhatTrien" Type="Self.NhaPhatTrien" Multiplicity="0..1" />
+    <End Role="Game" Type="Self.Game" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhaPhatTrien">
+        <PropertyRef Name="MaNPT" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="MaNPT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MaTL">
+    <End Role="TheLoai" Type="Self.TheLoai" Multiplicity="0..1" />
+    <End Role="Game" Type="Self.Game" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TheLoai">
+        <PropertyRef Name="MaTheLoai" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="MaTheLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MaKH">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+    <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="HoaDon">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GameEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DoTuois" EntityType="Self.DoTuoi" />
+    <EntitySet Name="Games" EntityType="Self.Game" />
+    <EntitySet Name="HoaDons" EntityType="Self.HoaDon" />
+    <EntitySet Name="KhachHangs" EntityType="Self.KhachHang" />
+    <EntitySet Name="NgonNgus" EntityType="Self.NgonNgu" />
+    <EntitySet Name="NhaPhatTriens" EntityType="Self.NhaPhatTrien" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TheLoais" EntityType="Self.TheLoai" />
+    <AssociationSet Name="FK_MaDT" Association="Self.FK_MaDT">
+      <End Role="DoTuoi" EntitySet="DoTuois" />
+      <End Role="Game" EntitySet="Games" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MaGame" Association="Self.FK_MaGame">
+      <End Role="Game" EntitySet="Games" />
+      <End Role="HoaDon" EntitySet="HoaDons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MaNN" Association="Self.FK_MaNN">
+      <End Role="NgonNgu" EntitySet="NgonNgus" />
+      <End Role="Game" EntitySet="Games" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MaNPT" Association="Self.FK_MaNPT">
+      <End Role="NhaPhatTrien" EntitySet="NhaPhatTriens" />
+      <End Role="Game" EntitySet="Games" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MaTL" Association="Self.FK_MaTL">
+      <End Role="TheLoai" EntitySet="TheLoais" />
+      <End Role="Game" EntitySet="Games" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MaKH" Association="Self.FK_MaKH">
+      <End Role="KhachHang" EntitySet="KhachHangs" />
+      <End Role="HoaDon" EntitySet="HoaDons" />
+    </AssociationSet>
+    <FunctionImport Name="Game_TimKiem">
+      <Parameter Name="MaGame" Mode="In" Type="String" />
+      <Parameter Name="TenGame" Mode="In" Type="String" />
+      <Parameter Name="GiaMin" Mode="In" Type="String" />
+      <Parameter Name="GiaMax" Mode="In" Type="String" />
+      <Parameter Name="MaTheLoai" Mode="In" Type="String" />
+      <Parameter Name="MaNPT" Mode="In" Type="String" />
+      <Parameter Name="MaDoTuoi" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(GameModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(GameModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

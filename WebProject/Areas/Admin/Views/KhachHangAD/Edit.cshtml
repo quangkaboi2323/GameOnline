@@ -1,0 +1,82 @@
+﻿@model WebProject.Models.KhachHang
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1><b><i>Chỉnh sửa quyền hạn</i></b></h1>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.MaKH)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.NamSinh)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ViKhachHang)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.DS_GameMua)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Ds_YeuThich)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.MatKhau)
+    <div class="form-group">
+        @Html.LabelFor(model => model.TenKH,"Họ và tên:", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @*@Html.EditorFor(model => model.TenKH, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.TextBoxFor(model => model.TenKH, new { @Value = Model.TenKH, @readonly = "readonly", @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.TenKH, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email,"Địa chỉ Email:", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @*@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.TextBoxFor(model => model.Email, new { @Value = Model.Email, @readonly = "readonly", @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SoDienThoai,"Số điện thoại", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @*@Html.EditorFor(model => model.SoDienThoai, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.TextBoxFor(model => model.SoDienThoai, new { @Value = Model.SoDienThoai, @readonly = "readonly", @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.SoDienThoai, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.QuyenHan,"Quyền hạn:", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                Người quản trị @Html.RadioButtonFor(model => model.QuyenHan, "True", new { @checked = "checked" }) &nbsp;
+                Người dùng @Html.RadioButtonFor(model => model.QuyenHan, "False")                
+                @*@Html.EditorFor(model => model.QuyenHan)*@
+                @Html.ValidationMessageFor(model => model.QuyenHan, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Cập nhập quyền hạn" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Trở về danh sách", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

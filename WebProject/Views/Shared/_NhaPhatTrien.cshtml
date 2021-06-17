@@ -1,0 +1,10 @@
+﻿<li class="dropdown">
+    <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#">Nhà phát triển <b class="caret"></b></a>
+    <ul class="dropdown-menu">
+        @foreach (var item in ViewBag.NPT)
+        {
+            <li><a href="@Url.Action("Details_NhaPhatTrien","Game", new { id = item.MaNPT})">@item.TenNPT</a></li>
+        }
+    </ul>
+</li>
+

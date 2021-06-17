@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GameModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DoTuoi">
+    <Key>
+      <PropertyRef Name="MaDoTuoi" />
+    </Key>
+    <Property Name="MaDoTuoi" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Tuoi" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Game">
+    <Key>
+      <PropertyRef Name="MaGame" />
+    </Key>
+    <Property Name="MaGame" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="TenGame" Type="nvarchar" MaxLength="50" />
+    <Property Name="NgayRaMat" Type="date" />
+    <Property Name="MoTa" Type="nvarchar" MaxLength="200" />
+    <Property Name="DanhGia" Type="int" />
+    <Property Name="SoLuong_DG" Type="int" />
+    <Property Name="Gia" Type="decimal" Precision="10" Scale="0" />
+    <Property Name="AnhMinhHoa" Type="varchar" MaxLength="50" />
+    <Property Name="LuotTai" Type="int" />
+    <Property Name="Hinh1" Type="varchar" MaxLength="50" />
+    <Property Name="Hinh2" Type="varchar" MaxLength="50" />
+    <Property Name="Hinh3" Type="varchar" MaxLength="50" />
+    <Property Name="Hinh4" Type="varchar" MaxLength="50" />
+    <Property Name="Dungluong" Type="varchar" MaxLength="20" />
+    <Property Name="TenFile" Type="varchar" MaxLength="50" />
+    <Property Name="OSName" Type="nvarchar" MaxLength="50" />
+    <Property Name="MemoryName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProcessName" Type="nvarchar" MaxLength="50" />
+    <Property Name="GraphicsName" Type="nvarchar" MaxLength="50" />
+    <Property Name="MaTheLoai" Type="varchar" MaxLength="10" />
+    <Property Name="MaNPT" Type="varchar" MaxLength="10" />
+    <Property Name="MaDoTuoi" Type="varchar" MaxLength="10" />
+    <Property Name="MaNN" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="HoaDon">
+    <Key>
+      <PropertyRef Name="MaHD" />
+    </Key>
+    <Property Name="MaHD" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaGame" Type="varchar" MaxLength="10" />
+    <Property Name="MaKH" Type="varchar" MaxLength="10" />
+    <Property Name="NgayThanhToan" Type="date" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="MaKH" />
+    </Key>
+    <Property Name="MaKH" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="TenKH" Type="nvarchar" MaxLength="50" />
+    <Property Name="NamSinh" Type="int" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="ViKhachHang" Type="decimal" Precision="10" Scale="0" />
+    <Property Name="SoDienThoai" Type="varchar" MaxLength="11" />
+    <Property Name="DS_GameMua" Type="varchar" MaxLength="600" />
+    <Property Name="Ds_YeuThich" Type="varchar" MaxLength="600" />
+    <Property Name="MatKhau" Type="varchar" MaxLength="50" />
+    <Property Name="QuyenHan" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NgonNgu">
+    <Key>
+      <PropertyRef Name="MaNN" />
+    </Key>
+    <Property Name="MaNN" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="TenNN" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="NhaPhatTrien">
+    <Key>
+      <PropertyRef Name="MaNPT" />
+    </Key>
+    <Property Name="MaNPT" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="TenNPT" Type="nvarchar" MaxLength="50" />
+    <Property Name="LogoNPT" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TheLoai">
+    <Key>
+      <PropertyRef Name="MaTheLoai" />
+    </Key>
+    <Property Name="MaTheLoai" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="TenTheLoai" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_MaDT">
+    <End Role="DoTuoi" Type="Self.DoTuoi" Multiplicity="0..1" />
+    <End Role="Game" Type="Self.Game" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DoTuoi">
+        <PropertyRef Name="MaDoTuoi" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="MaDoTuoi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MaGame">
+    <End Role="Game" Type="Self.Game" Multiplicity="0..1" />
+    <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Game">
+        <PropertyRef Name="MaGame" />
+      </Principal>
+      <Dependent Role="HoaDon">
+        <PropertyRef Name="MaGame" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MaKH">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+    <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="HoaDon">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MaNN">
+    <End Role="NgonNgu" Type="Self.NgonNgu" Multiplicity="0..1" />
+    <End Role="Game" Type="Self.Game" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NgonNgu">
+        <PropertyRef Name="MaNN" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="MaNN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MaNPT">
+    <End Role="NhaPhatTrien" Type="Self.NhaPhatTrien" Multiplicity="0..1" />
+    <End Role="Game" Type="Self.Game" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhaPhatTrien">
+        <PropertyRef Name="MaNPT" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="MaNPT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MaTL">
+    <End Role="TheLoai" Type="Self.TheLoai" Multiplicity="0..1" />
+    <End Role="Game" Type="Self.Game" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TheLoai">
+        <PropertyRef Name="MaTheLoai" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="MaTheLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="Game_TimKiem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaGame" Type="varchar" Mode="In" />
+    <Parameter Name="TenGame" Type="nvarchar" Mode="In" />
+    <Parameter Name="GiaMin" Type="varchar" Mode="In" />
+    <Parameter Name="GiaMax" Type="varchar" Mode="In" />
+    <Parameter Name="MaTheLoai" Type="varchar" Mode="In" />
+    <Parameter Name="MaNPT" Type="varchar" Mode="In" />
+    <Parameter Name="MaDoTuoi" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="GameModelStoreContainer">
+    <EntitySet Name="DoTuoi" EntityType="Self.DoTuoi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Game" EntityType="Self.Game" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HoaDon" EntityType="Self.HoaDon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NgonNgu" EntityType="Self.NgonNgu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NhaPhatTrien" EntityType="Self.NhaPhatTrien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TheLoai" EntityType="Self.TheLoai" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_MaDT" Association="Self.FK_MaDT">
+      <End Role="DoTuoi" EntitySet="DoTuoi" />
+      <End Role="Game" EntitySet="Game" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MaGame" Association="Self.FK_MaGame">
+      <End Role="Game" EntitySet="Game" />
+      <End Role="HoaDon" EntitySet="HoaDon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MaKH" Association="Self.FK_MaKH">
+      <End Role="KhachHang" EntitySet="KhachHang" />
+      <End Role="HoaDon" EntitySet="HoaDon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MaNN" Association="Self.FK_MaNN">
+      <End Role="NgonNgu" EntitySet="NgonNgu" />
+      <End Role="Game" EntitySet="Game" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MaNPT" Association="Self.FK_MaNPT">
+      <End Role="NhaPhatTrien" EntitySet="NhaPhatTrien" />
+      <End Role="Game" EntitySet="Game" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MaTL" Association="Self.FK_MaTL">
+      <End Role="TheLoai" EntitySet="TheLoai" />
+      <End Role="Game" EntitySet="Game" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
